@@ -11,6 +11,7 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
     socket.broadcast.emit('connection');
+
     socket.on('message',function(data){
         if(data) io.emit('message',data);
     });
