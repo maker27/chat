@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Простой чат на технологии WebSocket</title>
+    <style>
+        html,body{
+            width:100%;
+            height:100%;
+            margin:0;
+            overflow:hidden;
+            box-sizing:border-box;
+        }
+        body{
+            position:relative;
+            padding:5px 5px 50px 5px;
+        }
+        #chat{
+            height:100%;
+        }
+        #form{
+            position:absolute;
+            bottom:5px;
+            left:10px;
+            right:5px;
+            height:40px;
+            padding-right:110px;
+        }
+        #form>label{
+            display:block;
+            width:100%;
+        }
+        #msgText{
+            width:100%;
+            height:30px;
+            font-size:24px;
+        }
+        #sendButton{
+            position:absolute;
+            right:0;
+            top:0;
+            width:100px;
+            bottom:0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat"></div>
+<div id="form">
+    <label><input type="text" id="msgText"/></label>
+    <button id="sendButton">Отправить</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io(),
+    chat = document.getElementById('chat'),
+    input = document.getElementById('msgText'),
+
+   insertString = function(text){
+       let newText = document.createElement('div');
+       newText.textContent = text;
+       chat.appendChild(newText);
+   },
+    sendMessage = function(){
+        if(!input.value) return;
+        socket.emit('message', input.value);
+        input.value = '';
+    };
+
+input.addEventListener('keydown',function(e){
+    if(e.keyCode==13) sendMessage();
+});
+document.getElementById('sendButton').addEventListener('click',sendMessage);
+
+socket.on('connection',function(){
+    insertString('Присоединился новый участник');
+});
+socket.on('message',function(data){
+    insertString(data);
+});
+</script>
+</body>
+</html>

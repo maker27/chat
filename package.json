@@ -1,0 +1,23 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Simple WebSocketChat",
+  "main": "index.js",
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maker27/chat.git"
+  },
+  "author": "Maker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maker27/chat/issues"
+  },
+  "homepage": "https://github.com/maker27/chat#readme"
+}
