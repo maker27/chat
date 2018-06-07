@@ -6,6 +6,7 @@ const socket = io(),
         let newText = document.createElement('div');
         newText.textContent = text;
         chat.appendChild(newText);
+        chat.scrollTop = chat.scrollHeight;
     },
     sendMessage = function(){
         if(!input.value) return;
@@ -20,6 +21,9 @@ document.getElementById('sendButton').addEventListener('click',sendMessage);
 
 socket.on('connection',function(){
     insertString('Присоединился новый участник');
+});
+socket.on('disconnection',function(){
+    insertString('Один из участников отсоединился');
 });
 socket.on('message',function(data){
     insertString(data);

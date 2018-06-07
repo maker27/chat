@@ -12,6 +12,9 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
     socket.broadcast.emit('connection');
 
+    socket.on('disconnect', function(){
+        socket.broadcast.emit('disconnection');
+    });
     socket.on('message',function(data){
         if(data) io.emit('message',data);
     });
