@@ -38,3 +38,19 @@ body{
     width:100px;
     bottom:0;
 }
+.sysmsg{
+    font-style:italic;
+}
+.important{
+    font-weight:700;
+    color:#009;
+}
+#chat>div{overflow:auto}
+#chat>div>span{
+    float:left;
+    display:block;
+    width:16px;
+    height:20px;
+    margin-right:10px;
+    border-left:1px solid #000;
+}
