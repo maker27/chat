@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express'),
     app = express(),
     http = require('http').Server(app),
@@ -16,14 +17,14 @@ function getClientsCount(){
     return Object.keys(io.sockets.sockets).length;
 }
 function getRandomPid(){
-    var randEl, flagsCount = flags.length;
+    let randEl, flagsCount = flags.length;
     do{
         randEl = flags[Math.floor(Math.random()*flagsCount)];
     } while(allClients[randEl] && flagsCount>Object.keys(allClients).length);
     return randEl;
 }
 
-io.on('connection', function(socket,callback){
+io.on('connection', function(socket){
     socket.number = getRandomPid();
     allClients[socket.number] = Date.now();
     socket.broadcast.emit('connection',socket.number);
