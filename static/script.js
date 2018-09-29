@@ -8,7 +8,7 @@ const socket = io(),
         newText.textContent = text;
         if(icon){
             let iconSpan = document.createElement('span');
-            iconSpan.style.background = 'url(http://maffia-online.ru/images/flags/'+icon+'.png) no-repeat';
+            iconSpan.style.background = 'url(https://maffia-online.ru/images/flags/'+icon+'.png) no-repeat';
             newText.appendChild(iconSpan);
         }
         chat.appendChild(newText);
